@@ -1,0 +1,24 @@
+<%= render 'header'%>
+<h2>新規Tweetする</h2>
+
+<%= form_with(model: @post, local: true,url: clones_path) do |form| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @post.errors.count %>件のエラーがあります。</h2>
+      <ul>
+
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="content">
+    <%= form.label :tweet内容を記入 %>
+    <%= form.text_field :content %>
+  </div>
+  <%= form.submit %>
+<% end %>
+
+<%= render 'footer' %>
