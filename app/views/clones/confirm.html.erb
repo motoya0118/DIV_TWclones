@@ -1,0 +1,8 @@
+<h3>以下の内容で、Tweetする。</h3>
+
+<%= form_with(model: @post, local: true,url: clones_path) do |form| %>
+  <%= form.hidden_field :content %>
+  <p>Tweet内容:<%= @post.content %></p>
+  <%= form.submit  "Tweetする" %>
+  <%= form.submit  "戻る", name: 'back' %>
+<% end %>

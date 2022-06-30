@@ -13,8 +13,17 @@ class ClonesController < ApplicationController
   end
 
   def create
-    Post.create(content: params[:post][:content])
-    redirect_to new_clone_path
+    @post = Post.new(content: params[:post][:content])
+    if params[:back]
+      render :new
+    else
+      if @post.save
+        redirect_to clones_path, notice: "TWEETしました！"
+      else
+        render :new
+      end
+    end
+
   end
 
   def update
@@ -29,5 +38,8 @@ class ClonesController < ApplicationController
     redirect_to clones_path
   end
 
+  def confirm
+    @post = Post.new(content: params[:post][:content])
+  end
 
 end
