@@ -28,8 +28,12 @@ class ClonesController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(content: params[:post][:content])
-    redirect_to clones_path
+    if @post.invalid?
+      render :new
+    else
+      @post.update(content: params[:post][:content])
+      redirect_to clones_path
+    end
   end
 
   def destroy
@@ -40,6 +44,7 @@ class ClonesController < ApplicationController
 
   def confirm
     @post = Post.new(content: params[:post][:content])
+    render :new if @post.invalid?
   end
 
 end
