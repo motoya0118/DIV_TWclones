@@ -1,6 +1,7 @@
 class ClonesController < ApplicationController
 
   def index
+    @posts = Post.all
   end
 
   def new
@@ -11,7 +12,8 @@ class ClonesController < ApplicationController
   end
 
   def create
-    @post = Post.create
+    Post.create(content: params[:post][:content])
+    redirect_to new_clone_path
   end
 
   def update
@@ -19,5 +21,6 @@ class ClonesController < ApplicationController
 
   def destoroy
   end
+
 
 end
