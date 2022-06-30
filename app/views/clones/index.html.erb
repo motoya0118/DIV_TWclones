@@ -1,0 +1,25 @@
+<%=render 'header'%>
+<h2>Tweet一覧</h2>
+
+<p><%= notice %></p>
+
+<table>
+  <tr>
+    <th>投稿番号</th>
+    <th>内容</th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.id %></td>
+    <td><%= post.content %></td>
+    <td><%= link_to "Tweetを編集する", edit_clone_path(post.id) %></td>
+    <td><%= link_to 'Tweetを削除する', clone_path(post.id), method: :delete, data: { confirm: '本当に編集していいですか？' } %></td>
+  </tr>
+<% end %>
+
+
+</table>
+
+<%= link_to '新規Tweetする' , new_clone_path %>
+<%=render 'footer'%>
