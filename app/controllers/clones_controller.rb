@@ -23,7 +23,10 @@ class ClonesController < ApplicationController
     redirect_to clones_path
   end
 
-  def destoroy
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to clones_path
   end
 
 
