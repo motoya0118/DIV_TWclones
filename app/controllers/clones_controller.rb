@@ -18,6 +18,9 @@ class ClonesController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:id])
+    @post.update(content: params[:post][:content])
+    redirect_to clones_path
   end
 
   def destoroy
